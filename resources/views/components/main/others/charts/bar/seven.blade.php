@@ -1,5 +1,5 @@
 @php
-    $categories = json_decode('[{"name":"Activity","color":"bg-[#7592FF]"},{"name":"Online Purchases","color":"bg-[#7CD4FD]"},{"name":"Groceries","color":"bg-[#BDB4FE]"},{"name":"Digital Goods","color":"bg-[#FE9EFE]"},{"name":"Stationery","color":"bg-[#6FEAA6]"},{"name":"Others","color":"bg-[#D0D5DD]"}]', true);
+    $categories = json_decode('[{"name":"Activity","color":"bg-[#7592FF]"},{"name":"Online Purchases","color":"bg-[#7CD4FD]"},{"name":"Groceries","color":"bg-[#BDB4FE]"},{"name":"Digital Goods","color":"bg-[#FE9EFE]"},{"name":"Stationery","color":"bg-[#6FEAA6]"},{"name":"Others","color":"bg-[#D0D5DD] dark:bg-gray-700"}]', true);
 @endphp
 <x-ui.scroll-area class="max-w-full">
   <div class="flex min-w-105 flex-col gap-5 xl:min-w-full">
@@ -10,7 +10,7 @@
       <div class="h-8 w-6.5 shrink-0 rounded bg-[#BDB4FE]"></div>
       <div class="h-8 w-10 shrink-0 rounded bg-[#FE9EFE]"></div>
       <div class="h-8 w-3.25 shrink-0 rounded bg-[#6FEAA6]"></div>
-      <div class="h-8 w-13 shrink-0 rounded bg-[#D0D5DD]"></div>
+      <div class="h-8 w-13 shrink-0 rounded bg-[#D0D5DD] dark:bg-gray-700"></div>
     </div>
 
     <!-- Spending Categories Grid -->
@@ -18,7 +18,7 @@
       @foreach ($categories as $category)
 <div class="flex items-center gap-2">
         <span class="size-2.5 shrink-0 rounded-full {{ $category['color'] }}"></span>
-        <span class="text-sm font-normal text-gray-700">
+        <span class="text-sm font-normal text-gray-700 dark:text-gray-300">
           {{ $category['name'] }}
         </span>
       </div>

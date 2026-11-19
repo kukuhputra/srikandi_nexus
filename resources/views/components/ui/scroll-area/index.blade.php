@@ -48,11 +48,11 @@
         data-orientation="vertical"
         x-show="show"
         style="display: none;"
-        class="absolute end-0 top-0 flex h-full w-1.5 touch-none rounded-full bg-gray-100 transition-colors select-none"
+        class="absolute end-0 top-0 flex h-full w-1.5 touch-none rounded-full bg-gray-100 transition-colors select-none dark:bg-gray-800"
     >
         <div
             data-slot="scroll-area-thumb"
-            class="absolute start-0 w-full! rounded-full bg-gray-300 transition-colors hover:bg-gray-400"
+            class="absolute start-0 w-full! rounded-full bg-gray-300 transition-colors hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500"
             x-bind:style="`height: ${thumbHeight}px; top: ${thumbTop}px`"
             @pointerdown.prevent="startDrag($event)"
         ></div>

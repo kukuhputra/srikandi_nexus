@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="h-full bg-gray-50">
+<html lang="en" dir="ltr" class="h-full bg-gray-50 dark:bg-gray-900">
 
 <head>
     <script>

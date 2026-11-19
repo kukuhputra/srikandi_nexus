@@ -2,7 +2,7 @@
 @props(['size' => 'default'])
 @php
     $classes = TwMerge::merge(
-        'group/avatar relative flex size-10 shrink-0 rounded-full select-none data-[size=lg]:size-12 data-[size=sm]:size-8 data-[size=xl]:size-14 data-[size=xs]:size-6',
+        'group/avatar relative flex size-10 shrink-0 rounded-full select-none data-[size=lg]:size-12 data-[size=sm]:size-8 data-[size=xl]:size-14 data-[size=xs]:size-6 dark:after:mix-blend-lighten',
         $attributes->get('class')
     );
 @endphp

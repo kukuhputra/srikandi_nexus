@@ -1,31 +1,163 @@
 <!DOCTYPE html>
-<html lang="id" class="dark h-full bg-[#090e1a]">
+<html lang="en" dir="ltr" class="h-full bg-gray-50 dark:bg-gray-900">
+
 <head>
+    <script>
+        (function () {
+            if (localStorage.getItem('dir') === 'rtl') document.documentElement.setAttribute('dir', 'rtl');
+        })();
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Srikandi Nexus') }}</title>
+
+    @include('layouts.head-meta')
+
+    <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <!-- Theme Store -->
     <style>
-        :root { color-scheme: dark; }
-        body { background: #090e1a; background-image: radial-gradient(ellipse at 15% 20%,rgba(0,203,255,.12),transparent 42%),radial-gradient(ellipse at 85% 80%,rgba(37,99,235,.15),transparent 45%); }
-        .glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background: rgba(15,23,42,.70); border: 1px solid rgba(51,65,85,.5); }
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
+    <!-- Theme Store -->
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('theme', {
+                init() {
+                    const savedTheme = localStorage.getItem('theme');
+                    this.theme = savedTheme === 'dark' ? 'dark' : 'light';
+                    this.updateTheme();
+                },
+                theme: 'light',
+                resolvedTheme: 'light',
+                set(value) {
+                    value = value === 'dark' ? 'dark' : 'light';
+                    this.theme = value;
+                    localStorage.setItem('theme', value);
+                    this.updateTheme();
+                    window.dispatchEvent(new CustomEvent('theme-changed', { detail: value }));
+                },
+                toggle() {
+                    this.set(this.resolvedTheme === 'dark' ? 'light' : 'dark');
+                },
+                updateTheme() {
+                    const html = document.documentElement;
+                    const isDark = this.theme === 'dark';
+                    if (isDark) {
+                        html.classList.add('dark');
+                    } else {
+                        html.classList.remove('dark');
+                    }
+
+                    this.resolvedTheme = isDark ? 'dark' : 'light';
+                    html.setAttribute('data-color-scheme', this.resolvedTheme);
+                    html.dataset['theme'] = this.resolvedTheme;
+                    html.style.colorScheme = this.resolvedTheme;
+                    if (document.body) {
+                        document.body.dataset['theme'] = this.resolvedTheme;
+                        document.body.style.colorScheme = this.resolvedTheme;
+                    }
+                }
+            });
+
+            Alpine.store('sidebar', {
+                isExpanded: false,
+                isMobileOpen: false,
+                isHovered: false,
+
+                init() {
+                    const savedState = localStorage.getItem('sidebarExpanded');
+                    if (window.innerWidth >= 1280) {
+                        this.isExpanded = savedState === null ? true : savedState === 'true';
+                    } else {
+                        this.isExpanded = false;
+                    }
+                    this.isMobileOpen = false;
+
+                    window.addEventListener('resize', () => {
+                        this.handleResize();
+                    });
+                },
+
+                handleResize() {
+                    if (window.innerWidth < 1280) {
+                        if (this.isMobileOpen) {
+                             this.isMobileOpen = false;
+                        }
+                    } else {
+                        this.isMobileOpen = false;
+                        const savedState = localStorage.getItem('sidebarExpanded');
+                        this.isExpanded = savedState === null ? true : savedState === 'true';
+                    }
+                },
+
+                toggleExpanded() {
+                    this.isExpanded = !this.isExpanded;
+                    this.isMobileOpen = false;
+                    
+                    if (window.innerWidth >= 1280) {
+                        localStorage.setItem('sidebarExpanded', this.isExpanded);
+                    }
+                },
+
+                toggleMobileOpen() {
+                    this.isMobileOpen = !this.isMobileOpen;
+                },
+
+                setMobileOpen(val) {
+                    this.isMobileOpen = val;
+                },
+
+                setHovered(val) {
+                    if (window.innerWidth >= 1280 && !this.isExpanded) {
+                        this.isHovered = val;
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- Apply dark mode immediately to prevent flash -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const isDark = savedTheme === 'dark';
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.setAttribute('data-color-scheme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.setAttribute('data-color-scheme', 'light');
+            }
+        })();
+    </script>
 </head>
-<body class="min-h-full text-slate-100 antialiased flex flex-col justify-between">
-    <div class="min-h-screen flex flex-col">
-        @include('layouts.app-header')
 
-        <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-8">
-            {{ $slot }}
-        </main>
+<body>
 
-        <footer class="border-t border-slate-800/80 bg-slate-950/60 py-4 px-6 text-center text-xs font-mono text-slate-500">
-            <div class="max-w-7xl mx-auto flex items-center justify-between">
-                <span>SYS.NODE // SRIKANDI-NEXUS</span>
-                <span class="text-emerald-400">● SECURE SSL / PG17 ONLINE</span>
+
+
+    <div class="min-h-screen xl:flex sidebar-expanded" x-data :class="{ 'sidebar-expanded': $store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen }">
+        @include('layouts.backdrop')
+        @include('layouts.sidebar')
+
+        {{-- transition-all duration-300 ease-in-out --}}
+        <div class="flex-1 min-w-0 ml-0 ltr:xl:ml-[90px] rtl:xl:ml-0 rtl:xl:mr-[90px] [.sidebar-expanded_&]:ltr:xl:ml-[290px] [.sidebar-expanded_&]:rtl:xl:ml-0 [.sidebar-expanded_&]:rtl:xl:mr-[290px] transition-all duration-300 ease-in-out">
+            <!-- app header start -->
+            @include('layouts.app-header')
+            <!-- app header end -->
+            <div class="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">
+                @yield('content')
             </div>
-        </footer>
+        </div>
+
     </div>
+
 </body>
+
+@stack('scripts')
+
 </html>

@@ -7,7 +7,7 @@
 @endphp
 
 <aside id="sidebar"
-    class="fixed flex flex-col mt-0 top-0 px-5 start-0 bg-white text-gray-900 h-screen transition-all duration-300 ease-in-out max-xl:duration-200 max-xl:w-[290px] z-50 max-xl:z-101 ltr:border-r rtl:border-l border-gray-200 w-[90px] [.sidebar-expanded_&]:min-w-[290px]"
+    class="fixed flex flex-col mt-0 top-0 px-5 start-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out max-xl:duration-200 max-xl:w-[290px] z-50 max-xl:z-101 ltr:border-r rtl:border-l border-gray-200 w-[90px] [.sidebar-expanded_&]:min-w-[290px]"
     x-data="{
         openSubmenus: {},
         init() {
@@ -61,7 +61,7 @@
         <a href="/">
             <div class="hidden [.sidebar-expanded_&]:block">
                 <img class="dark:hidden" src="/assets/images/logo/logo.svg" alt="Logo" width="150" height="40" />
-                <img class="hidden" src="/assets/images/logo/logo-dark.svg" alt="Logo" width="150" height="40" />
+                <img class="hidden dark:block" src="/assets/images/logo/logo-dark.svg" alt="Logo" width="150" height="40" />
             </div>
             <img class="block [.sidebar-expanded_&]:hidden" src="/assets/images/logo/logo-icon.svg" alt="Logo" width="32" height="32" />
         </a>

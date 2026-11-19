@@ -11,8 +11,8 @@
         @csrf
 
         <div class="space-y-1.5">
-            <label class="text-xs font-semibold uppercase tracking-wider text-cyan-400">Operator Email / Fleet User</label>
-            <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="admin@srikandi.local" class="w-full input-marine rounded-xl px-4 py-3 text-sm mono text-white bg-slate-950/90 border border-cyan-500/30 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 outline-none">
+            <label class="text-xs font-semibold uppercase tracking-wider text-cyan-400">Username Operator</label>
+            <input id="username" name="username" type="text" value="{{ old('username') }}" required autofocus autocomplete="username" placeholder="kukuh" class="w-full input-marine rounded-xl px-4 py-3 text-sm mono text-white bg-slate-950/90 border border-cyan-500/30 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 outline-none">
         </div>
 
         <div class="space-y-1.5">

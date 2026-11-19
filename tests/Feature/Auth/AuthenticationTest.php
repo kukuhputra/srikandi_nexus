@@ -19,11 +19,15 @@ class AuthenticationTest extends TestCase
 
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'username' => 'kukuh',
+            'group_name' => 'all',
+        ]);
 
         $response = $this->post('/login', [
-            'email' => $user->email,
+            'username' => 'kukuh',
             'password' => 'password',
+            'group_name' => 'all',
         ]);
 
         $this->assertAuthenticated();

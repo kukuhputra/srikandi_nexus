@@ -1,10 +1,10 @@
 @use('App\Support\Ui\ButtonVariants')
 <div class="flex justify-between">
     <div>
-        <h3 class="text-lg font-semibold text-gray-800">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">
             {{ __('ecommerce.demographic.title') }}
         </h3>
-        <p class="mt-1 text-sm font-normal text-gray-500">
+        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
             {{ __('ecommerce.demographic.subtitle') }}
         </p>
     </div>
