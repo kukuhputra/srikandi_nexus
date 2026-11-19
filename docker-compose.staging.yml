@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  srikandi-staging:
+    image: php:8.5-cli-bookworm
+    container_name: srikandi-nexus-staging
+    restart: unless-stopped
+    working_dir: /var/www/html
+    ports:
+      - "8060:8000"
+    volumes:
+      - /opt/data/srikandi_nexus:/var/www/html
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=192.168.88.10
+      - DB_PORT=5433
+      - DB_DATABASE=nexus_db
+      - DB_USERNAME=bigbearcasaos
+      - DB_PASSWORD=bigbearcasaos
+    command: >
+      bash -c "
+        apt-get update && apt-get install -y libpq-dev git unzip curl libzip-dev &&
+        docker-php-ext-install pdo pdo_pgsql zip &&
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer &&
+        if [ ! -f composer.json ]; then
+          composer create-project laravel/laravel . --stability=dev;
+        fi &&
+        php artisan serve --host=0.0.0.0 --port=8000
+      "
