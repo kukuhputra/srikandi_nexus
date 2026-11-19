@@ -1,47 +1,45 @@
 <x-guest-layout>
-    <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    @if ($errors->any())
+      <div class="mb-5 rounded-lg border border-rose-500/30 bg-rose-950/40 px-4 py-3 text-xs text-rose-300 text-center mono">
+          ⚠️ {{ $errors->first() }}
+      </div>
+    @endif
+
+    <form method="POST" action="{{ route('login') }}" class="space-y-4">
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="space-y-1.5">
+            <label class="text-xs font-semibold uppercase tracking-wider text-cyan-400">Operator Email / Fleet User</label>
+            <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus autocomplete="username" placeholder="admin@srikandi.local" class="w-full input-marine rounded-xl px-4 py-3 text-sm mono text-white bg-slate-950/90 border border-cyan-500/30 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 outline-none">
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="space-y-1.5">
+            <label class="text-xs font-semibold uppercase tracking-wider text-cyan-400">Access Key / Password</label>
+            <input id="password" name="password" type="password" required autocomplete="current-password" placeholder="••••••••••••" class="w-full input-marine rounded-xl px-4 py-3 text-sm mono text-white bg-slate-950/90 border border-cyan-500/30 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 outline-none">
         </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+        <div class="space-y-1.5">
+            <label class="text-xs font-semibold uppercase tracking-wider text-cyan-400">Unit Kerja Operasional</label>
+            <select id="group_name" name="group_name" required class="w-full input-marine rounded-xl px-4 py-3 text-sm mono text-cyan-300 bg-slate-950/90 border border-cyan-500/30 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/40 outline-none">
+                <option value="">Pilih Unit Kerja...</option>
+                <option value="tambak">Tambak</option>
+                <option value="shipping">Shipping</option>
+                <option value="retail">Retail</option>
+                <option value="all">Semua Unit (All Access)</option>
+            </select>
+        </div>
+
+        <div class="flex items-center justify-between text-xs pt-1">
+            <label class="flex items-center gap-2 text-slate-400 cursor-pointer">
+                <input id="remember_me" type="checkbox" class="rounded border-cyan-500/40 bg-slate-900 text-cyan-500 focus:ring-cyan-500/20" name="remember">
+                <span>Ingat Sesi Ini</span>
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
+        <button type="submit" class="w-full btn-marine text-white font-orbitron font-bold py-3.5 rounded-xl text-xs uppercase tracking-widest cursor-pointer mt-2">
+            Inisiasi Sesi Terminal
+        </button>
     </form>
 </x-guest-layout>

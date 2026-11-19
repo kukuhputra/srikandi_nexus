@@ -1,17 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
+    <div class="mb-8">
+        <h1 class="text-2xl font-semibold tracking-tight text-white">Dashboard</h1>
+        <p class="mt-1 text-sm text-slate-400">Selamat datang di Srikandi Nexus.</p>
     </div>
+    <section class="glass min-h-[360px] rounded-xl flex items-center justify-center">
+        <p class="font-mono text-sm text-slate-500">WORKSPACE READY // MENUS TO BE CONFIGURED</p>
+    </section>
 </x-app-layout>
