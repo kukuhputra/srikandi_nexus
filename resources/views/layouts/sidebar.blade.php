@@ -60,8 +60,8 @@
     <div class="py-8 flex items-center gap-2" :class="(!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen) ? 'justify-center' : 'justify-between'">
         <a href="/">
             <div class="hidden [.sidebar-expanded_&]:block">
-                <img class="dark:hidden" src="/assets/images/logo/logo.svg" alt="Logo" width="150" height="40" />
-                <img class="hidden dark:block" src="/assets/images/logo/logo-dark.svg" alt="Logo" width="150" height="40" />
+                <img class="dark:hidden" src="/assets/images/logo/logo.png" alt="Logo" width="140" height="42" />
+                <img class="hidden dark:block" src="/assets/images/logo/logo-dark.png" alt="Logo" width="140" height="42" />
             </div>
             <img class="block [.sidebar-expanded_&]:hidden" src="/assets/images/logo/logo-icon.svg" alt="Logo" width="32" height="32" />
         </a>

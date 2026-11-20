@@ -26,8 +26,8 @@
 
             <!-- Logo (mobile only) -->
             <a href="/" class="xl:hidden">
-                <img width="154" height="32" class="dark:hidden" src="/assets/images/logo/logo.svg" alt="Logo" />
-                <img width="154" height="32" class="hidden dark:block" src="/assets/images/logo/logo-dark.svg" alt="Logo" />
+                <img width="140" height="42" class="dark:hidden" src="/assets/images/logo/logo.png" alt="Logo" />
+                <img width="140" height="42" class="hidden dark:block" src="/assets/images/logo/logo-dark.png" alt="Logo" />
             </a>
 
             <!-- Application menu toggle (mobile only) -->

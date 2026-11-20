@@ -22,7 +22,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Force HTTPS in production or behind Cloudflare/Proxy
-        \Illuminate\Support\Facades\URL::forceScheme('https');
+        if (config('app.env') === 'production' || request()->header('X-Forwarded-Proto') === 'https') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
 
         // Blade Component Aliases for main feature modules
         Blade::anonymousComponentPath(resource_path('views/components/main/dashboard'), 'dashboard');

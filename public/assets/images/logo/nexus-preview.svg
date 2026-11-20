@@ -1,0 +1,15 @@
+<svg width="180" height="36" viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon (Squircle with gradient N) -->
+  <rect width="36" height="36" rx="8" fill="#0b1329" stroke="rgba(0,180,216,0.3)" stroke-width="1"/>
+  <defs>
+    <linearGradient id="nexusGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0077b6"/>
+      <stop offset="100%" stop-color="#00b4d8"/>
+    </linearGradient>
+  </defs>
+  <!-- Stylized N in icon -->
+  <path d="M10 26V10H14L22 22V10H26V26H22L14 14V26H10Z" fill="url(#nexusGrad)"/>
+  
+  <!-- Wordmark NEXUS -->
+  <text x="48" y="24" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="800" letter-spacing="3">NEXUS</text>
+</svg>

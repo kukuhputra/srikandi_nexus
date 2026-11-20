@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="h-full bg-gray-50 dark:bg-gray-900">
+<html lang="en" dir="ltr" class="h-full bg-slate-950 dark text-slate-100" data-theme="dark">
 
 <head>
     <script>
@@ -16,10 +16,45 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Theme Store -->
     <style>
         [x-cloak] {
             display: none !important;
+        }
+        /* Marine glow styles */
+        .marine-glow {
+            text-shadow: 0 0 15px rgba(0, 180, 216, 0.6);
+        }
+        .input-marine {
+            transition: all 0.3s ease;
+        }
+        .input-marine:focus {
+            border-color: #00b4d8;
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+            outline: none;
+        }
+        .btn-marine {
+            background: linear-gradient(135deg, #0077b6 0%, #03045e 100%);
+            border: 1px solid rgba(0, 180, 216, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 119, 182, 0.4);
+        }
+        .btn-marine:hover {
+            background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+            box-shadow: 0 6px 25px rgba(0, 180, 216, 0.6);
+            transform: translateY(-1px);
+        }
+        /* Custom dark mode override matching login style */
+        .dark body, html.dark body {
+            background: linear-gradient(135deg, #020817 0%, #06172f 50%, #020e1a 100%) !important;
+            color: #c0d2ec !important;
+        }
+        .dark .marine-card, html.dark .marine-card,
+        .dark .bg-white.dark\:bg-gray-800, html.dark .bg-gray-900 {
+            background: rgba(10, 22, 40, 0.85) !important;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 180, 216, 0.25) !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(0, 180, 216, 0.05);
+            border-radius: 16px;
         }
     </style>
     <!-- Theme Store -->
@@ -27,12 +62,12 @@
         document.addEventListener('alpine:init', () => {
             Alpine.store('theme', {
                 init() {
-                    const savedTheme = localStorage.getItem('theme');
+                    const savedTheme = localStorage.getItem('theme') || 'dark';
                     this.theme = savedTheme === 'dark' ? 'dark' : 'light';
                     this.updateTheme();
                 },
-                theme: 'light',
-                resolvedTheme: 'light',
+                theme: 'dark',
+                resolvedTheme: 'dark',
                 set(value) {
                     value = value === 'dark' ? 'dark' : 'light';
                     this.theme = value;
