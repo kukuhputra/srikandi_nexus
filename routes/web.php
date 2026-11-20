@@ -15,6 +15,10 @@ Route::get('/dashboard', function () {
     return view('pages.dashboard.ecommerce');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/shipment-trackers', function () {
+    return view('pages.shipping.shipment-trackers');
+})->middleware(['auth', 'verified'])->name('shipment.trackers');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

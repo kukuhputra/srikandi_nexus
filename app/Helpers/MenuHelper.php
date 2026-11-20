@@ -9,42 +9,75 @@ class MenuHelper
         return [
             [
                 'icon' => 'dashboard',
-                'name' => 'Dashboard',
+                'name' => 'Dashboards',
                 'subItems' => [
-                    ['name' => 'Ecommerce', 'path' => '/ecommerce'],
+                    ['name' => 'Hardware NOC', 'path' => '/ecommerce', 'pro' => false],
+                    ['name' => 'Cluster & GPU', 'path' => '/blank', 'pro' => false],
+                    ['name' => 'AIS Fleet Tracker', 'path' => '/blank', 'pro' => false],
                 ],
             ],
+        ];
+    }
+
+    public static function getShippingItems()
+    {
+        return [
             [
-                'icon' => 'calendar',
-                'name' => 'Calendar',
-                'path' => '/calendar',
+                'icon' => 'task',
+                'name' => 'Shipment Trackers',
+                'path' => '/shipment-trackers',
+            ],
+            [
+                'icon' => 'charts',
+                'name' => 'Noon Reports',
+                'subItems' => [
+                    ['name' => 'Daily Reports', 'path' => '/blank', 'pro' => false],
+                    ['name' => 'Engine Analytics', 'path' => '/blank', 'pro' => false],
+                    ['name' => 'Rincian Bungker', 'path' => '/blank', 'pro' => false],
+                ],
             ],
             [
                 'icon' => 'user-profile',
-                'name' => 'User Profile',
-                'path' => '/profile',
+                'name' => 'Crew Lists',
+                'path' => '/blank',
             ],
             [
-                'name' => 'Forms',
-                'icon' => 'forms',
-                'subItems' => [
-                    ['name' => 'Form Elements', 'path' => '/form-elements', 'pro' => false],
-                ],
+                'icon' => 'ui-elements',
+                'name' => 'Certificates',
+                'path' => '/blank',
             ],
             [
-                'name' => 'Tables',
-                'icon' => 'tables',
+                'icon' => 'ecommerce',
+                'name' => 'Logistics',
                 'subItems' => [
-                    ['name' => 'Basic Tables', 'path' => '/basic-tables', 'pro' => false],
+                    ['name' => 'Monitoring Tiket', 'path' => '/blank', 'pro' => false],
+                    ['name' => 'Pengiriman Barang', 'path' => '/blank', 'pro' => false],
+                    ['name' => 'Penerimaan Barang', 'path' => '/blank', 'pro' => false],
+                    ['name' => 'Stock Update', 'path' => '/blank', 'pro' => false],
+                    ['name' => 'Master Catalog', 'path' => '/blank', 'pro' => false],
                 ],
             ],
+        ];
+    }
+
+    public static function getPrawnFarmsItems()
+    {
+        return [
             [
-                'name' => 'Pages',
-                'icon' => 'pages',
-                'subItems' => [
-                    ['name' => 'Blank Page', 'path' => '/blank', 'pro' => false],
-                    ['name' => '404 Error', 'path' => '/error-404', 'pro' => false],
-                ],
+                'icon' => 'empty-state',
+                'name' => 'Overview',
+                'path' => '/blank',
+            ],
+        ];
+    }
+
+    public static function getRetailsItems()
+    {
+        return [
+            [
+                'icon' => 'ecommerce',
+                'name' => 'Overview',
+                'path' => '/blank',
             ],
         ];
     }
@@ -53,33 +86,14 @@ class MenuHelper
     {
         return [
             [
-                'icon' => 'charts',
-                'name' => 'Charts',
-                'new' => true,
-                'subItems' => [
-                    ['name' => 'Line Chart', 'path' => '/line-chart', 'pro' => false],
-                    ['name' => 'Bar Chart', 'path' => '/bar-chart', 'pro' => false],
-                ],
+                'icon' => 'forms',
+                'name' => 'Bon Sementara',
+                'path' => '/blank',
             ],
             [
-                'icon' => 'ui-elements',
-                'name' => 'UI Elements',
-                'subItems' => [
-                    ['name' => 'Alerts', 'path' => '/alerts', 'pro' => false],
-                    ['name' => 'Avatar', 'path' => '/avatars', 'pro' => false],
-                    ['name' => 'Badge', 'path' => '/badge', 'pro' => false],
-                    ['name' => 'Buttons', 'path' => '/buttons', 'pro' => false],
-                    ['name' => 'Images', 'path' => '/images', 'pro' => false],
-                    ['name' => 'Videos', 'path' => '/videos', 'pro' => false],
-                ],
-            ],
-            [
-                'icon' => 'authentication',
-                'name' => 'Authentication',
-                'subItems' => [
-                    ['name' => 'Sign In', 'path' => '/signin', 'pro' => false],
-                    ['name' => 'Sign Up', 'path' => '/signup', 'pro' => false],
-                ],
+                'icon' => 'tables',
+                'name' => 'Surat Jalan Internal',
+                'path' => '/blank',
             ],
         ];
     }
@@ -92,7 +106,19 @@ class MenuHelper
                 'items' => self::getMainNavItems(),
             ],
             [
-                'title' => 'Others',
+                'title' => 'SHIPPING',
+                'items' => self::getShippingItems(),
+            ],
+            [
+                'title' => 'PRAWN FARMS',
+                'items' => self::getPrawnFarmsItems(),
+            ],
+            [
+                'title' => 'RETAILS',
+                'items' => self::getRetailsItems(),
+            ],
+            [
+                'title' => 'OTHERS',
                 'items' => self::getOthersItems(),
             ],
         ];
@@ -130,20 +156,15 @@ class MenuHelper
 
             'authentication' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14 2.75C14 2.33579 14.3358 2 14.75 2C15.1642 2 15.5 2.33579 15.5 2.75V5.73291L17.75 5.73291H19C19.4142 5.73291 19.75 6.0687 19.75 6.48291C19.75 6.89712 19.4142 7.23291 19 7.23291H18.5L18.5 12.2329C18.5 15.5691 15.9866 18.3183 12.75 18.6901V21.25C12.75 21.6642 12.4142 22 12 22C11.5858 22 11.25 21.6642 11.25 21.25V18.6901C8.01342 18.3183 5.5 15.5691 5.5 12.2329L5.5 7.23291H5C4.58579 7.23291 4.25 6.89712 4.25 6.48291C4.25 6.0687 4.58579 5.73291 5 5.73291L6.25 5.73291L8.5 5.73291L8.5 2.75C8.5 2.33579 8.83579 2 9.25 2C9.66421 2 10 2.33579 10 2.75L10 5.73291L14 5.73291V2.75ZM7 7.23291L7 12.2329C7 14.9943 9.23858 17.2329 12 17.2329C14.7614 17.2329 17 14.9943 17 12.2329L17 7.23291L7 7.23291Z" fill="currentColor"></path></svg>',
 
-            'chat' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.00002 12.0957C4.00002 7.67742 7.58174 4.0957 12 4.0957C16.4183 4.0957 20 7.67742 20 12.0957C20 16.514 16.4183 20.0957 12 20.0957H5.06068L6.34317 18.8132C6.48382 18.6726 6.56284 18.4818 6.56284 18.2829C6.56284 18.084 6.48382 17.8932 6.34317 17.7526C4.89463 16.304 4.00002 14.305 4.00002 12.0957ZM12 2.5957C6.75332 2.5957 2.50002 6.849 2.50002 12.0957C2.50002 14.4488 3.35633 16.603 4.77303 18.262L2.71969 20.3154C2.50519 20.5299 2.44103 20.8525 2.55711 21.1327C2.6732 21.413 2.94668 21.5957 3.25002 21.5957H12C17.2467 21.5957 21.5 17.3424 21.5 12.0957C21.5 6.849 17.2467 2.5957 12 2.5957ZM7.62502 10.8467C6.93467 10.8467 6.37502 11.4063 6.37502 12.0967C6.37502 12.787 6.93467 13.3467 7.62502 13.3467H7.62512C8.31548 13.3467 8.87512 12.787 8.87512 12.0967C8.87512 11.4063 8.31548 10.8467 7.62512 10.8467H7.62502ZM10.75 12.0967C10.75 11.4063 11.3097 10.8467 12 10.8467H12.0001C12.6905 10.8467 13.2501 11.4063 13.2501 12.0967C13.2501 12.787 12.6905 13.3467 12.0001 13.3467H12C11.3097 13.3467 10.75 12.787 10.75 12.0967ZM16.375 10.8467C15.6847 10.8467 15.125 11.4063 15.125 12.0967C15.125 12.787 15.6847 13.3467 16.375 13.3467H16.3751C17.0655 13.3467 17.6251 12.787 17.6251 12.0967C17.6251 11.4063 17.0655 10.8467 16.3751 10.8467H16.375Z" fill="currentColor"></path></svg>',
-
-            'support-ticket' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 17.0518V12C20 7.58174 16.4183 4 12 4C7.58168 4 3.99994 7.58174 3.99994 12V17.0518M19.9998 14.041V19.75C19.9998 20.5784 19.3282 21.25 18.4998 21.25H13.9998M6.5 18.75H5.5C4.67157 18.75 4 18.0784 4 17.25V13.75C4 12.9216 4.67157 12.25 5.5 12.25H6.5C7.32843 12.25 8 12.9216 8 13.75V17.25C8 18.0784 7.32843 18.75 6.5 18.75ZM17.4999 18.75H18.4999C19.3284 18.75 19.9999 18.0784 19.9999 17.25V13.75C19.9999 12.9216 19.3284 12.25 18.4999 12.25H17.4999C16.6715 12.25 15.9999 12.9216 15.9999 13.75V17.25C15.9999 18.0784 16.6715 18.75 17.4999 18.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
-
-            'email' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 8.187V17.25C3.5 17.6642 3.83579 18 4.25 18H19.75C20.1642 18 20.5 17.6642 20.5 17.25V8.18747L13.2873 13.2171C12.5141 13.7563 11.4866 13.7563 10.7134 13.2171L3.5 8.187ZM20.5 6.2286C20.5 6.23039 20.5 6.23218 20.5 6.23398V6.24336C20.4976 6.31753 20.4604 6.38643 20.3992 6.42905L12.4293 11.9867C12.1716 12.1664 11.8291 12.1664 11.5713 11.9867L3.60116 6.42885C3.538 6.38481 3.50035 6.31268 3.50032 6.23568C3.50028 6.10553 3.60577 6 3.73592 6H20.2644C20.3922 6 20.4963 6.10171 20.5 6.2286ZM22 6.25648V17.25C22 18.4926 20.9926 19.5 19.75 19.5H4.25C3.00736 19.5 2 18.4926 2 17.25V6.23398C2 6.22371 2.00021 6.2135 2.00061 6.20333C2.01781 5.25971 2.78812 4.5 3.73592 4.5H20.2644C21.2229 4.5 22 5.27697 22.0001 6.23549C22.0001 6.24249 22.0001 6.24949 22 6.25648Z" fill="currentColor"></path></svg>',
-
             'empty-state' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"> <path d="M11.041 7.656l3.536-3.535m.353 3.889l1.768-1.768M15.107 18.44L5.561 8.894m-1.59 3.712l7.424 7.425a1.5 1.5 0 002.121 0l7.425-7.425a1.5 1.5 0 000-2.121L13.516 3.06a1.5 1.5 0 00-2.12 0L3.97 10.485a1.5 1.5 0 000 2.121zm2.65 2.652l2.122 2.12-2.475 2.476a1.5 1.5 0 11-2.121-2.121l2.475-2.475z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="currentColor" /> </svg>',
-
-            'layout' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9.33301 9.33301V19.9998M20 9.33301H4M5.5 20H18.5C19.3284 20 20 19.3284 20 18.5V5.5C20 4.67157 19.3284 4 18.5 4H5.5C4.67157 4 4 4.67157 4 5.5V18.5C4 19.3284 4.67157 20 5.5 20Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-
-            'maps' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8.87646 19.4561C8.99463 19.4563 9.11281 19.4425 9.22852 19.4147L14.771 18.0845C14.889 18.0561 15.0095 18.0423 15.13 18.0431C15.2468 18.0438 15.3636 18.0581 15.4779 18.0861L19.3927 19.0448C20.3377 19.2763 21.2495 18.5608 21.2495 17.5879V7.17656C21.2495 6.48557 20.7775 5.88398 20.1063 5.71961L18.2299 5.26008M15.13 18.0431V13.158M8.87646 19.4561C8.75732 19.456 8.63819 19.4416 8.52164 19.4131L3.89319 18.2796C3.22203 18.1152 2.75 17.5136 2.75 16.8226V6.41127C2.75 5.43838 3.66185 4.7229 4.60681 4.95432L5.76839 5.2388M8.87646 19.4561V13.1446M15.2819 6.03146C15.2819 9.34375 12.0091 11.9984 12.0091 11.9984C12.0091 11.9984 8.71896 9.34375 8.71896 6.03146C8.71896 4.21916 10.1881 2.75 12.0004 2.75C13.8127 2.75 15.2819 4.21916 15.2819 6.03146Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.03125H12.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
         ];
 
         return $icons[$iconName] ?? '<svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/></svg>';
+    }
+
+    public static function t($text)
+    {
+        $res = __($text);
+        return is_array($res) ? $text : $res;
     }
 }

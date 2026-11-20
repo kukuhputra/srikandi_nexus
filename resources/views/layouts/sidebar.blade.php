@@ -79,7 +79,7 @@
                             'lg:justify-center' : 'justify-start'">
                             <template
                                 x-if="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen">
-                                <span>{{ __($menuGroup['title']) }}</span>
+                                <span>{{ $menuGroup['title'] }}</span>
                             </template>
                             <template x-if="!$store.sidebar.isExpanded && !$store.sidebar.isHovered && !$store.sidebar.isMobileOpen">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +113,7 @@
                                             <span
                                                 x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
                                                 class="menu-item-text flex items-center gap-2">
-                                                {{ __($item['name']) }}
+                                                {{ MenuHelper::t($item['name']) }}
                                                 @if (!empty($item['new']))
                                                     <span class="absolute ltr:right-10 rtl:left-10"
                                                         :class="isActive('{{ $item['path'] ?? '' }}') ?
@@ -139,7 +139,7 @@
                                                             :class="isActive('{{ $subItem['path'] }}') ?
                                                                 'menu-dropdown-item-active' :
                                                                 'menu-dropdown-item-inactive'">
-                                                            {{ __($subItem['name']) }}
+                                                            {{ MenuHelper::t($subItem['name']) }}
                                                             <span class="flex items-center gap-1 ltr:ml-auto rtl:mr-auto">
                                                                 @if (!empty($subItem['new']))
                                                                     <span
@@ -185,7 +185,7 @@
                                             <span
                                                 x-show="$store.sidebar.isExpanded || $store.sidebar.isHovered || $store.sidebar.isMobileOpen"
                                                 class="menu-item-text flex items-center gap-2">
-                                                {{ __($item['name']) }}
+                                                {{ MenuHelper::t($item['name']) }}
                                                 @if (!empty($item['new']))
                                                     <span
                                                         class="ltr:ml-2 rtl:mr-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-brand-500 text-white">
